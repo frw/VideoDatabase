@@ -1,0 +1,23 @@
+.display-shelf {
+	-fx-background-color: linear-gradient(to bottom, black 60%, derive(black, 20%) 60.1%, black 100%);
+}
+
+.display-shelf .scroll-bar {
+	-fx-base: transparent;
+}
+
+.display-shelf .scroll-bar .increment-button,
+.display-shelf .scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+	-fx-border-color: transparent;
+}
+
+.display-shelf .scroll-bar .track {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.display-shelf .scroll-bar .thumb {
+    -fx-background-color: rgba(100%, 100%, 100%, 0.2);
+    -fx-background-insets: 3, 0, 0;
+}

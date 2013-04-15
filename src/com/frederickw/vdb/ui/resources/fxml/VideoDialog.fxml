@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.frederickw.vdb.data.*?>
+<?import com.frederickw.vdb.data.Type?>
+<?import com.frederickw.vdb.ui.controls.*?>
+<?import eu.schudt.javafx.controls.calendar.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?scenebuilder-classpath-element ../../../../../../../bin?>
+<?scenebuilder-classpath-element ../../../../../../../../../Libraries/Java/DatePicker/schudt-javafx-datepicker.jar?>
+
+<BorderPane id="BorderPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="660.0" xmlns:fx="http://javafx.com/fxml" fx:controller="com.frederickw.vdb.ui.VideoDialog">
+  <bottom>
+    <HBox alignment="CENTER_RIGHT" minHeight="16.0" prefHeight="21.0" prefWidth="600.0">
+      <children>
+        <Button fx:id="btnOK" mnemonicParsing="false" onAction="#onOK" text="OK">
+          <HBox.margin>
+            <Insets right="5.0" />
+          </HBox.margin>
+        </Button>
+        <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#onCancel" text="Cancel" />
+      </children>
+      <BorderPane.margin>
+        <Insets bottom="5.0" left="5.0" right="5.0" />
+      </BorderPane.margin>
+    </HBox>
+  </bottom>
+  <center>
+    <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+      <tabs>
+        <Tab text="Information">
+          <content>
+            <ScrollPane id="ScrollPane" fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefViewportHeight="328.0" prefViewportWidth="590.0">
+              <content>
+                <GridPane hgap="5.0" vgap="5.0">
+                  <children>
+                    <Label text="Title:" GridPane.columnIndex="0" GridPane.hgrow="NEVER" GridPane.rowIndex="0" GridPane.vgrow="NEVER" />
+                    <TextField fx:id="txtTitle" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                    <Button fx:id="btnSearch" contentDisplay="GRAPHIC_ONLY" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#searchOnline" prefHeight="21.0" prefWidth="21.0" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                      <graphic>
+                        <ImageView fitHeight="16.0" fitWidth="16.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@../image/search.png" preserveRatio="false" smooth="false" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                      <tooltip>
+                        <Tooltip text="Search Online" />
+                      </tooltip>
+                    </Button>
+                    <Label text="Release Date:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                    <DatePicker fx:id="dpReleaseDate" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" promptText="" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                      <stylesheets>
+                        <URL value="@../css/date-picker.css" />
+                      </stylesheets>
+                    </DatePicker>
+                    <Label text="Type:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                    <ComboBox fx:id="cmbType" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                    <Separator prefWidth="200.0" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+                    <Label text="Poster URL:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                    <TextField fx:id="txtPoster" onAction="#updatePreview" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                    <Button fx:id="btnOpen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#selectFile" prefHeight="21.0" prefWidth="21.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                      <graphic>
+                        <ImageView fitHeight="16.0" fitWidth="16.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@../image/open.png" preserveRatio="false" smooth="false" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                    </Button>
+                    <Label text="Preview:" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                    <ImageView fx:id="imgPreview" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                    <Separator prefWidth="200.0" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="7" />
+                    <Label text="Rated:" GridPane.columnIndex="0" GridPane.rowIndex="8" />
+                    <TextField fx:id="txtRated" prefWidth="200.0" promptText="e.g. PG-13" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                    <Label text="Rating:" GridPane.columnIndex="0" GridPane.rowIndex="9" />
+                    <StarRating fx:id="srRating" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                    <Label text="Runtime(minutes):" GridPane.columnIndex="0" GridPane.rowIndex="10" />
+                    <NumberSpinner fx:id="spnrRuntime" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                    <Label text="Plot:" GridPane.columnIndex="0" GridPane.rowIndex="11" />
+                    <TextArea fx:id="txtPlot" prefWidth="200.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                    <Label text="Plot Keywords:" GridPane.columnIndex="0" GridPane.rowIndex="12" />
+                    <TextField fx:id="txtPlotKeywords" prefWidth="200.0" promptText="Comma separated e.g. running, fishing, swimming" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+                    <Label text="Genres:" GridPane.columnIndex="0" GridPane.rowIndex="13" />
+                    <TextField fx:id="txtGenres" prefWidth="200.0" promptText="Comma separated e.g. Romance, Drama" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+                    <Label text="Languages:" GridPane.columnIndex="0" GridPane.rowIndex="14" />
+                    <TextField fx:id="txtLanguages" prefWidth="200.0" promptText="Comma separated e.g. English, French, Spanish" GridPane.columnIndex="1" GridPane.rowIndex="14" />
+                  </children>
+                  <columnConstraints>
+                    <ColumnConstraints halignment="LEFT" hgrow="NEVER" maxWidth="-Infinity" minWidth="-Infinity" />
+                    <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="-Infinity" />
+                    <ColumnConstraints fillWidth="false" hgrow="NEVER" maxWidth="-Infinity" minWidth="-Infinity" />
+                  </columnConstraints>
+                  <padding>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  </padding>
+                  <rowConstraints>
+                    <RowConstraints fillHeight="false" maxHeight="-Infinity" minHeight="-Infinity" valignment="CENTER" vgrow="NEVER" />
+                    <RowConstraints fillHeight="false" maxHeight="-Infinity" minHeight="-Infinity" vgrow="NEVER" />
+                    <RowConstraints fillHeight="false" maxHeight="-Infinity" minHeight="-Infinity" vgrow="NEVER" />
+                    <RowConstraints fillHeight="false" maxHeight="-Infinity" minHeight="-Infinity" vgrow="NEVER" />
+                    <RowConstraints fillHeight="false" maxHeight="-Infinity" minHeight="-Infinity" valignment="CENTER" vgrow="NEVER" />
+                    <RowConstraints fillHeight="false" maxHeight="-Infinity" minHeight="-Infinity" valignment="CENTER" vgrow="NEVER" />
+                    <RowConstraints fillHeight="false" maxHeight="-Infinity" minHeight="-Infinity" valignment="CENTER" vgrow="NEVER" />
+                    <RowConstraints fillHeight="false" maxHeight="-Infinity" minHeight="-Infinity" valignment="CENTER" vgrow="NEVER" />
+                    <RowConstraints fillHeight="false" maxHeight="-Infinity" minHeight="-Infinity" vgrow="NEVER" />
+                    <RowConstraints fillHeight="false" maxHeight="-Infinity" minHeight="-Infinity" vgrow="NEVER" />
+                    <RowConstraints fillHeight="false" maxHeight="-Infinity" minHeight="-Infinity" vgrow="NEVER" />
+                    <RowConstraints maxHeight="1.7976931348623157E308" minHeight="-Infinity" valignment="TOP" vgrow="SOMETIMES" />
+                    <RowConstraints fillHeight="false" maxHeight="1.7976931348623157E308" minHeight="-Infinity" valignment="CENTER" vgrow="NEVER" />
+                    <RowConstraints fillHeight="false" maxHeight="-Infinity" minHeight="-Infinity" valignment="CENTER" vgrow="NEVER" />
+                    <RowConstraints fillHeight="false" maxHeight="-Infinity" minHeight="-Infinity" valignment="CENTER" vgrow="NEVER" />
+                  </rowConstraints>
+                </GridPane>
+              </content>
+            </ScrollPane>
+          </content>
+        </Tab>
+        <Tab text="Cast and Crew">
+          <content>
+            <ScrollPane id="ScrollPane" fitToHeight="true" fitToWidth="true" prefViewportHeight="555.0" prefViewportWidth="605.0">
+              <content>
+                <GridPane hgap="5.0" vgap="5.0">
+                  <children>
+                    <Label text="Cast:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                    <TableView fx:id="tblCast" editable="true" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.rowSpan="4">
+                      <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" fx:id="x1" />
+                      </columnResizePolicy>
+                      <columns>
+                        <TableColumn prefWidth="75.0" text="Actor" fx:id="colActor" />
+                        <TableColumn prefWidth="75.0" text="Role" fx:id="colRole" />
+                      </columns>
+                    </TableView>
+                    <Button id="btnCrewAdd" fx:id="btnCastAdd" contentDisplay="GRAPHIC_ONLY" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addActor" prefHeight="21.0" prefWidth="21.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                      <graphic>
+                        <ImageView fitHeight="16.0" fitWidth="16.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@../image/add.png" preserveRatio="false" smooth="false" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                    </Button>
+                    <Button fx:id="btnCastRemove" contentDisplay="GRAPHIC_ONLY" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#removeActors" prefHeight="21.0" prefWidth="21.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                      <graphic>
+                        <ImageView fitHeight="16.0" fitWidth="16.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@../image/remove.png" preserveRatio="false" smooth="false" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                    </Button>
+                    <Button fx:id="btnCastUp" contentDisplay="GRAPHIC_ONLY" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#moveActorsUp" prefHeight="21.0" prefWidth="21.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                      <graphic>
+                        <Polygon stroke="BLACK" strokeType="INSIDE">
+                          <points>
+                            <Double fx:value="-5.0" />
+                            <Double fx:value="0.0" />
+                            <Double fx:value="5.0" />
+                            <Double fx:value="0.0" />
+                            <Double fx:value="0.0" />
+                            <Double fx:value="-5.0" />
+                          </points>
+                        </Polygon>
+                      </graphic>
+                    </Button>
+                    <Button fx:id="btnCastDown" contentDisplay="GRAPHIC_ONLY" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#moveActorsDown" prefHeight="21.0" prefWidth="21.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                      <graphic>
+                        <Polygon stroke="BLACK" strokeType="INSIDE">
+                          <points>
+                            <Double fx:value="-5.0" />
+                            <Double fx:value="0.0" />
+                            <Double fx:value="5.0" />
+                            <Double fx:value="0.0" />
+                            <Double fx:value="0.0" />
+                            <Double fx:value="5.0" />
+                          </points>
+                        </Polygon>
+                      </graphic>
+                    </Button>
+                    <Separator prefWidth="200.0" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="5" />
+                    <Label text="Crew:" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+                    <TableView fx:id="tblCrew" columnResizePolicy="$x1" editable="true" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="7" GridPane.rowSpan="4">
+                      <columns>
+                        <TableColumn prefWidth="75.0" text="Member" fx:id="colMember" />
+                        <TableColumn prefWidth="75.0" text="Job" fx:id="colJob" />
+                      </columns>
+                    </TableView>
+                    <Button id="btnCastAdd" fx:id="btnCrewAdd" contentDisplay="GRAPHIC_ONLY" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addCrewMember" prefHeight="21.0" prefWidth="21.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                      <graphic>
+                        <ImageView fitHeight="16.0" fitWidth="16.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@../image/add.png" preserveRatio="false" smooth="false" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                    </Button>
+                    <Button fx:id="btnCrewRemove" contentDisplay="GRAPHIC_ONLY" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#removeCrewMembers" prefHeight="21.0" prefWidth="21.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                      <graphic>
+                        <ImageView fitHeight="16.0" fitWidth="16.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@../image/remove.png" preserveRatio="false" smooth="false" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                    </Button>
+                    <Button fx:id="btnCrewUp" contentDisplay="GRAPHIC_ONLY" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#moveCrewMembersUp" prefHeight="21.0" prefWidth="21.0" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                      <graphic>
+                        <Polygon stroke="BLACK" strokeType="INSIDE">
+                          <points>
+                            <Double fx:value="-5.0" />
+                            <Double fx:value="0.0" />
+                            <Double fx:value="5.0" />
+                            <Double fx:value="0.0" />
+                            <Double fx:value="0.0" />
+                            <Double fx:value="-5.0" />
+                          </points>
+                        </Polygon>
+                      </graphic>
+                    </Button>
+                    <Button fx:id="btnCrewDown" contentDisplay="GRAPHIC_ONLY" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#moveCrewMembersDown" prefHeight="21.0" prefWidth="21.0" GridPane.columnIndex="1" GridPane.rowIndex="10">
+                      <graphic>
+                        <Polygon stroke="BLACK" strokeType="INSIDE">
+                          <points>
+                            <Double fx:value="-5.0" />
+                            <Double fx:value="0.0" />
+                            <Double fx:value="5.0" />
+                            <Double fx:value="0.0" />
+                            <Double fx:value="0.0" />
+                            <Double fx:value="5.0" />
+                          </points>
+                        </Polygon>
+                      </graphic>
+                    </Button>
+                  </children>
+                  <columnConstraints>
+                    <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="-Infinity" />
+                    <ColumnConstraints fillWidth="false" hgrow="NEVER" maxWidth="-Infinity" minWidth="-Infinity" />
+                  </columnConstraints>
+                  <padding>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  </padding>
+                  <rowConstraints>
+                    <RowConstraints fillHeight="false" maxHeight="16.0" minHeight="-Infinity" prefHeight="16.0" vgrow="NEVER" />
+                    <RowConstraints maxHeight="21.0" minHeight="-Infinity" prefHeight="21.0" vgrow="NEVER" />
+                    <RowConstraints fillHeight="false" maxHeight="21.0" minHeight="-Infinity" prefHeight="21.0" vgrow="NEVER" />
+                    <RowConstraints fillHeight="false" maxHeight="21.0" minHeight="-Infinity" prefHeight="21.0" vgrow="NEVER" />
+                    <RowConstraints maxHeight="1.7976931348623157E308" minHeight="-Infinity" valignment="TOP" vgrow="SOMETIMES" />
+                    <RowConstraints fillHeight="false" maxHeight="4.0" minHeight="-Infinity" prefHeight="4.0" vgrow="NEVER" />
+                    <RowConstraints fillHeight="false" maxHeight="16.0" minHeight="-Infinity" prefHeight="16.0" vgrow="NEVER" />
+                    <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" vgrow="NEVER" />
+                    <RowConstraints fillHeight="false" maxHeight="-Infinity" minHeight="-Infinity" vgrow="NEVER" />
+                    <RowConstraints fillHeight="false" maxHeight="-Infinity" minHeight="-Infinity" vgrow="NEVER" />
+                    <RowConstraints maxHeight="1.7976931348623157E308" minHeight="-Infinity" valignment="TOP" vgrow="SOMETIMES" />
+                  </rowConstraints>
+                </GridPane>
+              </content>
+            </ScrollPane>
+          </content>
+        </Tab>
+        <Tab fx:id="tabEpisodes" disable="true" text="Episodes">
+          <content>
+            <BorderPane prefHeight="200.0" prefWidth="200.0">
+              <center>
+                <TableView fx:id="tblEpisodes" columnResizePolicy="$x1" editable="true" prefHeight="200.0" prefWidth="200.0">
+                  <columns>
+                    <PTableColumn percentageWidth="0.1" text="Season" fx:id="colSeason" />
+                    <PTableColumn percentageWidth="0.1" text="Episode" fx:id="colEpisode" />
+                    <PTableColumn percentageWidth="0.8" text="Title" fx:id="colTitle" />
+                  </columns>
+                </TableView>
+              </center>
+              <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+              </padding>
+              <right>
+                <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="5.0">
+                  <children>
+                    <Button id="btnEpisodeAdd" fx:id="btnEpisodesAdd" contentDisplay="GRAPHIC_ONLY" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addEpisode" prefHeight="21.0" prefWidth="21.0">
+                      <graphic>
+                        <ImageView fitHeight="16.0" fitWidth="16.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@../image/add.png" preserveRatio="false" smooth="false" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                    </Button>
+                    <Button id="btnEpisodeRemove" fx:id="btnEpisodesRemove" contentDisplay="GRAPHIC_ONLY" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#removeEpisodes" prefHeight="21.0" prefWidth="21.0">
+                      <graphic>
+                        <ImageView fitHeight="16.0" fitWidth="16.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@../image/remove.png" preserveRatio="false" smooth="false" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                    </Button>
+                  </children>
+                  <BorderPane.margin>
+                    <Insets left="5.0" />
+                  </BorderPane.margin>
+                </VBox>
+              </right>
+            </BorderPane>
+          </content>
+        </Tab>
+      </tabs>
+      <BorderPane.margin>
+        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+      </BorderPane.margin>
+    </TabPane>
+  </center>
+</BorderPane>
